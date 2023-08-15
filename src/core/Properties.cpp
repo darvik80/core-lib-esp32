@@ -56,18 +56,11 @@ void PropertiesLoader::load(std::string_view filePath) {
             esp_logi(props, "read props: %s", item->string);
             if (item->type == cJSON_Object) {
                 if (
-                    auto it = _readers.find(item->string);
-                        it != _readers.
-
-                                end()
-
-                        ) {
+                    auto it = _readers.find(item->string);it != _readers.end()) {
                     auto props = it->second(item);
                     for (
-                        auto consumer
-                            : _consumers) {
-                        consumer->
-                                applyProperties(*props);
+                        auto consumer : _consumers) {
+                        consumer->applyProperties(*props);
                     }
                 }
             }
